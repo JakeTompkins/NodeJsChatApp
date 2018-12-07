@@ -34,7 +34,7 @@ export default class App extends React.Component
         <input id="textInput" type="text" name="messageInput" />
         <button onClick={() => {
           let input = document.getElementById("textInput")
-          let message = input.nodeValue
+          let message = input.value
 
           this.send(message)
           
