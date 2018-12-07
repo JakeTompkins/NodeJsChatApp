@@ -7,7 +7,9 @@ const cors = require('cors')
 const port = 3001
 
 const app = express()
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
 // Server instance
 const server = http.createServer(app)
 // Creat socket using the server instance
