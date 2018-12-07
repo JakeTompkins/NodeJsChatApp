@@ -8,7 +8,7 @@ export default class App extends React.Component
     super(props)
 
     this.state = {
-      endpoint: "http://10.23.51.134:3001"
+      endpoint: "http://localhost:3001"
     }
   }
 

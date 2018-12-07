@@ -24,8 +24,8 @@ io.on('connection', socket => {
         console.log("User Disconnected")
     })
 
-    socket.on('send message', (message) => {
-        io.sockets.emit('send message', message)
+    socket.on('add message', (message) => {
+        io.sockets.emit('add message', message)
     })
 })
 
