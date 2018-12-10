@@ -15,14 +15,15 @@ export default class App extends React.Component
   send = (message) => {
     const socket = socketIOClient(this.state.endpoint)
 
-    socket.emit('add message', message)
+    socket.emit('send message', message)
   }
   render()
   {
 
     const socket = socketIOClient(this.state.endpoint)
 
-    socket.on('add message', (message) => {
+    socket.on('receive message', (message) => {
+      
       let m = document.createElement("div")
       let mtext = document.createTextNode(message)
       m.appendChild(mtext)
