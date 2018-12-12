@@ -1,9 +1,12 @@
-const express  = require('express')
-const http     = require('http')
-const socketIO = require('socket.io')
-const cors     = require('cors')
+const express      = require('express')
+const session      = require('express-session')
+const http         = require('http')
+const socketIO     = require('socket.io')
+const cors         = require('cors')
+const ChatManager  = require('./services/chatManager')
+require('./passport')
 
-import ChatManager from './services/chatManager'
+
 
 // Host port
 const port = 3001
@@ -11,11 +14,23 @@ const port = 3001
 
 
 
-// TODO: Figure out if CORS is actually necessary
+//Create app
 const app = express()
+
+
+
+
+// Configure middlewhere
 app.use(cors({
     origin: 'http://localhost:3000'
 }))
+app.use(session({secret: "alksdjfew;ifwoefpwefh;aslkdfo", resave: false, saveUninitialized: false}))
+
+// Routes
+app.get("/login", (req, res, session) => {
+    req.session.name = "Jake"
+    res.send(req.session)
+})
 
 
 
@@ -34,7 +49,8 @@ io.origins("http://localhost:3000")
 
 
 // Create chat manager
-chatManager = ChatManager(io)
+const chatManager = new ChatManager(io)
+chatManager.run()
 
 
 
